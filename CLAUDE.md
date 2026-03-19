@@ -1,13 +1,13 @@
 # CLAUDE.md
 
-This is **seo-agi** (The Beefy SEO Skill) -- a Claude Code skill for Generative Engine Optimization. It writes pages that rank on Google AND get cited by LLMs.
+This is **seo-agi** -- a Claude Code skill for Generative Engine Optimization. It writes pages that rank on Google AND get cited by LLMs.
 
 This is not a generic SEO prompt. It enforces 500-token chunk architecture, Reddit Test quality gates, verification tags, "Not For You" blocks, and real competitive data from DataForSEO/Ahrefs/SEMRush/GSC.
 
 ## Structure
 
 ```
-SKILL.md              -- The framework (beefy SEO brain + data layer integration)
+SKILL.md              -- The framework (GEO engine + data layer integration)
 SPEC.md               -- Technical architecture for the data layer
 scripts/
   research.py         -- CLI: SERP research via DataForSEO

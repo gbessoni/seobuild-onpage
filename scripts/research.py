@@ -128,19 +128,43 @@ def run_research(args) -> dict:
 
     if not creds["has_dataforseo"]:
         print(
-            "ERROR: DataForSEO credentials not found.",
+            "NO_DATAFORSEO_CREDS: DataForSEO credentials not found.",
             file=sys.stderr,
         )
         print(
-            "Run: python3 scripts/setup.py",
-            file=sys.stderr,
-        )
-        print(
-            "Or add DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD to "
+            "Falling back to mock data. For live research, add credentials to "
             "~/.config/seo-agi/.env",
             file=sys.stderr,
         )
-        sys.exit(1)
+        print(
+            "Or use Ahrefs/SEMRush MCP tools in Claude Code as alternative data sources.",
+            file=sys.stderr,
+        )
+        # Return a skeleton that the agent can fill in via MCP tools or WebSearch
+        return {
+            "keyword": args.keyword,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "source": "no-creds-fallback",
+            "location": location,
+            "language": language,
+            "serp": {"organic": [], "paa": [], "featured_snippet": None},
+            "related_keywords": [],
+            "analysis": {
+                "keyword": args.keyword,
+                "intent": "unknown",
+                "word_count_stats": {},
+                "paa_questions": [],
+                "topic_frequency": [],
+                "heading_patterns": {},
+                "competitors_analyzed": 0,
+                "total_organic_results": 0,
+                "featured_snippet": None,
+            },
+            "_fallback_note": (
+                "No DataForSEO credentials. Use Ahrefs MCP, SEMRush MCP, "
+                "or WebSearch to gather competitive data manually."
+            ),
+        }
 
     client = DataForSEOClient(
         creds["dataforseo_login"], creds["dataforseo_password"]

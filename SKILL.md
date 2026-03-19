@@ -1,12 +1,12 @@
 ---
-name: beefy-seo
+name: seo-agi
 description: >
   Write SEO pages that rank in Google AND get cited by LLMs (ChatGPT, Perplexity, Claude).
   Use when creating airport parking pages, local service pages, listicles, comparison pages,
   pricing pages, or any content that must pass the Reddit Test -- meaning a knowledgeable
   practitioner would upvote it, not call it AI slop. Enforces information gain, 500-token
   chunk architecture, real HTML tables, verification tags, and honest "Not For You" sections.
-  Triggers on: "write an SEO page", "beefy SEO", "seo page for [keyword]", "create a landing page",
+  Triggers on: "write an SEO page", "seo-agi", "seo agi", "seo page for [keyword]", "create a landing page",
   "rank for [keyword]", "rewrite this page for SEO", "optimize this content", "GEO", "AEO",
   "generative engine optimization", "seo-agi", "write a page that ranks".
   Do NOT trigger for pure technical SEO audits (crawl errors, robots.txt, sitemap validation).
@@ -21,7 +21,7 @@ metadata:
       - llm-optimization
 ---
 
-# THE BEEFY SEO SKILL -- Generative Engine Optimization for AI Agents
+# SEO-AGI -- Generative Engine Optimization for AI Agents
 
 You are an elite GEO (Generative Engine Optimization) and Technical SEO agent. Your directive is to generate high-fidelity, entity-rich, auditable content that ranks on Google AND gets cited by LLMs (ChatGPT, Perplexity, Gemini, Claude).
 
@@ -33,26 +33,51 @@ You do not write generic fluff. You write highly specific, practical, answer-for
 
 Before writing anything, you gather real competitive data. This is what separates you from every other SEO prompt.
 
+### Skill Root Discovery
+
+Before running any script, locate the skill root. This works across Claude Code, OpenClaw, Codex, Gemini, and local checkout:
+
+```bash
+# Find skill root
+for dir in \
+  "." \
+  "${CLAUDE_PLUGIN_ROOT:-}" \
+  "$HOME/.claude/skills/seo-agi" \
+  "$HOME/.agents/skills/seo-agi" \
+  "$HOME/.codex/skills/seo-agi" \
+  "$HOME/.gemini/extensions/seo-agi" \
+  "$HOME/seo-agi"; do
+  [ -n "$dir" ] && [ -f "$dir/scripts/research.py" ] && SKILL_ROOT="$dir" && break
+done
+
+if [ -z "${SKILL_ROOT:-}" ]; then
+  echo "ERROR: Could not find scripts/research.py -- is seo-agi installed?" >&2
+  exit 1
+fi
+```
+
 ### Research Scripts
 
-Run the research pipeline from this skill's directory:
+Use `$SKILL_ROOT` in all script calls:
 
 ```bash
 # Full competitive research (SERP + keywords + competitor content analysis)
-python3 {{SKILL_PATH}}/scripts/research.py "<keyword>" --output=brief
+python3 "${SKILL_ROOT}/scripts/research.py" "<keyword>" --output=brief
 
 # Detailed JSON output for deep analysis
-python3 {{SKILL_PATH}}/scripts/research.py "<keyword>" --output=json
+python3 "${SKILL_ROOT}/scripts/research.py" "<keyword>" --output=json
 
 # Google Search Console data (if creds available)
-python3 {{SKILL_PATH}}/scripts/gsc_pull.py "<site_url>" --keyword="<keyword>"
+python3 "${SKILL_ROOT}/scripts/gsc_pull.py" "<site_url>" --keyword="<keyword>"
 
 # Cannibalization detection
-python3 {{SKILL_PATH}}/scripts/gsc_pull.py "<site_url>" --keyword="<keyword>" --cannibalization
+python3 "${SKILL_ROOT}/scripts/gsc_pull.py" "<site_url>" --keyword="<keyword>" --cannibalization
 
 # Mock mode for testing (no API keys needed)
-python3 {{SKILL_PATH}}/scripts/research.py "<keyword>" --mock --output=compact
+python3 "${SKILL_ROOT}/scripts/research.py" "<keyword>" --mock --output=compact
 ```
+
+**IMPORTANT:** Always combine the skill root discovery and the script call into a single bash command block so the variable is available.
 
 ### API Key Configuration
 
@@ -204,7 +229,7 @@ LLMs often ignore JSON-LD in the header. Embed semantic data directly inline usi
 - **LocalBusiness:** For facilities or lots listed
 - **BreadcrumbList:** Site navigation context
 
-See `{{SKILL_PATH}}/references/schema-patterns.md` for JSON-LD templates.
+See `references/schema-patterns.md` in the skill root for JSON-LD templates. Read it with: `cat "${SKILL_ROOT}/references/schema-patterns.md"`
 
 ### Schema Serves 3 Independent Functions:
 
@@ -281,6 +306,7 @@ Direct. Summarize the decision and next action. Do not restate the entire page.
 - Generic praise repeated across all items in a listicle
 - Keyword stuffing
 - Jump-link TOC patterns that create weak fragment URLs
+- Content that sits outside your core service topical circle (a wildlife recovery site does not need a post on the industrial uses of guano — wide topical circles dilute AI authority signals and confuse intent classification)
 
 ### Always Do:
 - Short to medium sentences, concrete nouns, explicit comparisons
@@ -307,6 +333,17 @@ Direct. Summarize the decision and next action. Do not restate the entire page.
 - Practical comparison table (service type vs. cost, emergency vs. standard, residential vs. commercial)
 - Buyer questions people actually ask
 
+### Ask Maps & Conversational GBP Optimization
+Google Maps and similar platforms are rolling out "Ask Maps" features — natural language queries like "who is open this Sunday?" or "who has same-day availability in [City]?" The answer is pulled from structured GBP data, not from your website.
+
+**Required data points to answer conversational queries:**
+- Hours with holiday/exception hours explicitly set
+- Services listed as discrete GBP service items (not just in description prose)
+- Q&A section pre-populated with the exact questions customers ask
+- Posts updated at least bi-weekly (freshness signal for conversational pull)
+
+**Rule:** If your GBP cannot answer "who has [service] available [specific condition]?" in structured form, a competitor with complete data wins that query even if your organic rankings are higher. Treat GBP structured fields as AEO markup, not optional admin work.
+
 ### Listicles
 - Each item must be substantively different
 - Format per item: name, who it's best for, why it made the list, one differentiator, one tradeoff
@@ -331,8 +368,33 @@ LLMs pull from positions 51-100, not just page 1. Being the most structured and 
 - Have unique operational content (terminal pickup, process steps)
 - Be the page that tells the truth when competitors don't
 
+### Off-Page Sequencing — Existence Before On-Page
+Google and AI agents now cross-check third-party signals before trusting your own site or Google Business Profile (GBP). An "inspector" layer verifies external mentions to filter spam. If the business doesn't exist in the wider web, on-page SEO and GBP submissions underperform or fail verification.
+
+**Required sequence:**
+1. Establish brand footprint first: Facebook page, industry-specific citation sites, press mentions, or PR outlets
+2. Then submit or optimize the GBP
+3. Then build on-page content — now the AI has external corroboration to amplify rather than question
+
+Skipping step 1 is the most common reason a legitimate local business struggles to rank despite having a clean, well-structured site.
+
 ### Entity Consensus Generation:
 When prompted for broader strategy, output variations of core 500-token chunks formatted for cross-posting on LinkedIn, Medium, Reddit, and Vocal Media to build brand authority where LLMs scrape.
+
+### Reddit — Subdomains Over Standard Posts
+Reddit is pulled into AI Overviews and conversational search results at high frequency, but standard `www.reddit.com` posts are often flagged as spam before indexing. Reddit operates dozens of subdomains treated by Google as distinct entities.
+
+**Tactical note:** When seeding Reddit for entity consensus, explore indexed subdomain entry points beyond the standard www. Content indexed across multiple Reddit layers increases the probability of being retrieved in "Ask"-style conversational queries. Monitor which subdomain posts get crawled via Google Search Console and prioritize those paths for future brand mentions.
+
+### RAG Targeting — Write for AI Retrieval, Not Keyword Volume
+Modern AI search agents (Gemini, ChatGPT, Perplexity) use Retrieval-Augmented Generation (RAG): they pull the most authoritative chunk available and surface it as the answer. This means zero-volume long-tail queries matter.
+
+**How to execute:**
+- Identify esoteric, service-specific questions your clients actually ask in sales calls or support tickets — even if keyword tools show "0 searches/month"
+- Write a dedicated 500-token chunk answering each question with hard specifics
+- These chunks "train" AI models to associate your domain with that competency, making you the cited source when a user asks the same question inside a chat interface
+
+**Rule:** At least 20% of a content calendar should target zero-volume long-tail queries that demonstrate deep operational expertise. Traffic is a lagging indicator; AI citation is the leading one.
 
 ---
 
@@ -351,11 +413,14 @@ When prompted for broader strategy, output variations of core 500-token chunks f
 
 When the user provides a target keyword and brief:
 
-1. **Research**: Run the data layer
+1. **Research**: Run the data layer (combine discovery + script in one bash block):
    ```bash
-   python3 {{SKILL_PATH}}/scripts/research.py "<keyword>" --output=json
+   for dir in "." "${CLAUDE_PLUGIN_ROOT:-}" "$HOME/.claude/skills/seo-agi" "$HOME/.agents/skills/seo-agi" "$HOME/.codex/skills/seo-agi" "$HOME/seo-agi"; do [ -n "$dir" ] && [ -f "$dir/scripts/research.py" ] && SKILL_ROOT="$dir" && break; done; python3 "${SKILL_ROOT}/scripts/research.py" "<keyword>" --output=json
    ```
-   If DataForSEO creds are unavailable, use Ahrefs/SEMRush MCP tools, then WebSearch as fallback.
+   If the script exits with an error (no DataForSEO creds), fall back in this order:
+   - Try Ahrefs MCP tools (`serp-overview`, `keywords-explorer-overview`) if available
+   - Try SEMRush MCP tools (`keyword_research`, `organic_research`) if available
+   - Use WebSearch tool as last resort to manually research the SERP landscape
    Also search for official source pages, operational documents, recent changes, layout details, comparable cost math, and community feedback.
 
 2. **Brief**: If the user did not provide a brief, build one:
@@ -393,7 +458,7 @@ When rewriting an existing page:
 1. Fetch URL (WebFetch) or read local file
 2. Identify target keyword from title/H1 or ask user
 3. Run research against the keyword
-4. Run GSC data if available: `python3 {{SKILL_PATH}}/scripts/gsc_pull.py "<site_url>" --keyword="<keyword>"`
+4. Run GSC data if available: `for dir in "." "${CLAUDE_PLUGIN_ROOT:-}" "$HOME/.claude/skills/seo-agi" "$HOME/.agents/skills/seo-agi" "$HOME/seo-agi"; do [ -n "$dir" ] && [ -f "$dir/scripts/gsc_pull.py" ] && SKILL_ROOT="$dir" && break; done; python3 "${SKILL_ROOT}/scripts/gsc_pull.py" "<site_url>" --keyword="<keyword>"`
 5. Gap analysis: compare existing page vs research data. What's missing? What's thin? What fails the Reddit Test?
 6. Rewrite following gap report
 7. Output rewritten page + change summary (what changed and why)
@@ -430,6 +495,7 @@ Run before every delivery. If any answer is NO, revise before delivering.
 | JSON-LD schema included and matches page type? | YES |
 | Title tag <60 chars with target keyword? | YES |
 | Meta description <155 chars with value prop? | YES |
+| Is every piece of content inside the site's core topical circle? (audit and remove or noindex anything that strays) | YES |
 
 ---
 
@@ -478,9 +544,12 @@ If the user provides only a keyword, infer the rest and confirm before writing.
 
 ## REFERENCE FILES
 
-Load on demand when writing:
-- `{{SKILL_PATH}}/references/schema-patterns.md` -- JSON-LD templates by page type
-- `{{SKILL_PATH}}/references/page-templates.md` -- structural templates (supplement, not override, the 500-token chunk architecture)
+Load on demand when writing (use Read tool with the skill root path):
+- `references/schema-patterns.md` -- JSON-LD templates by page type
+- `references/page-templates.md` -- structural templates (supplement, not override, the 500-token chunk architecture)
+- `references/quality-checklist.md` -- detailed scoring rubric
+
+To read these, find the skill root first, then use the Read tool on `${SKILL_ROOT}/references/<filename>`.
 
 ## DEPENDENCIES
 
