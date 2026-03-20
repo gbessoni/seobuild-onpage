@@ -99,7 +99,12 @@ No keys at all? The skill falls back to web search. You lose precision but the w
 
 Pick your platform:
 
-**Claude Code:**
+**Claude Code (Mac app / CLI):**
+1. Download the [latest release zip](https://github.com/gbessoni/seo-agi/archive/refs/heads/main.zip)
+2. In Claude Code, go to **Settings > Skills > Upload skill**
+3. Drag the `.zip` file into the upload dialog
+
+Or install via CLI:
 ```bash
 claude install-skill gbessoni/seo-agi
 ```
