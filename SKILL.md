@@ -341,6 +341,8 @@ Every page must include a section framed as original research, a data experiment
 - **Keyword stuffing in image alt text** -- every image needs alt text, but it must be descriptive of the image content, not loaded with target keywords. Stuffed alt text is a negative ranking signal
 - **Duplicate or near-duplicate content** across pages on the same site. Content must be fresh and unique. Duplicate content is a significant vulnerability to scrapers and core updates
 - **Weak internal linking** -- pages need sufficient internal links pointing to them. If a page has far fewer internal links than competitor pages targeting the same keyword, its ranking potential is capped
+- **Stock photos** -- do not use stock photography. Sites using the same stock images as competitors receive slight ranking demotions. Use original photos, custom screenshots, or AI-generated unique images instead. This is a confirmed signal.
+- **Broad catchall pages** -- general topical hub pages that try to cover everything get hammered in core updates. Build narrow, specific detail pages instead. A page about "FLL Terminal 1 Parking" outperforms a page about "Everything You Need to Know About FLL." Specificity equals resilience.
 
 ### Always Do:
 - Short to medium sentences, concrete nouns, explicit comparisons
@@ -560,14 +562,62 @@ Run before every delivery. If any answer is NO, revise before delivering.
 | 26 | Original Research / Data Experiment block present? | YES/NO |
 | 27 | Map-to-informational internal link present (local pages only)? | YES/NO |
 | 28 | Every claim validated against 2+ high-ranking sources (Entity Consensus)? | YES/NO |
-| | **Score: X/28** | |
+| 29 | Geographic specificity present (neighborhoods, landmarks, not just city name)? | YES/NO |
+| 30 | Core answer deliverable in first 3 chunks (click satisfaction)? | YES/NO |
+| 31 | Interactive element or tool present (AI Overview theft defense)? | RECOMMENDED |
+| 32 | No banned 2026 content patterns present? | YES/NO |
+| 33 | Minimum 1,500 words of substantive content? | YES/NO |
+| 34 | FHASS compliance if applicable (extra E-E-A-T for financial/health/safety)? | YES/NO |
+| | **Score: X/34** | |
 
-Pages scoring below 22/28 must be revised before delivery. Items marked NO must include a note on what needs to be fixed.
+Pages scoring below 27/34 must be revised before delivery. Items marked NO must include a note on what needs to be fixed.
 
 ### Spam Resilience Priority: Technical Relevance > Human Tone
 In the 2025-2026 spam update cycle, Google is prioritizing **technical relevance density** (factual accuracy, entity coverage, structured data completeness) over "human-sounding" prose. A page that is factually perfect, entity-rich, and operationally detailed but "sounds like AI" will outperform a page with warm, conversational tone but thin substance.
 
 **Rule:** Do NOT downgrade a page for sounding clinical or data-heavy if it passes the Reddit Test and Information Gain Test. Volume and relevance are currently outperforming "human-like" fluff. Prioritize adding more facts, more structure, and more verifiable claims over softening the language to sound more natural. The anti-spam algorithms are targeting thin content and keyword stuffing, not technically dense content.
+
+---
+
+## 2026 MARCH UPDATE PROTOCOLS
+
+These rules reflect confirmed ranking behavior changes observed across the SEO community (X discussions, Google Cloud documentation leaks, and practitioner testing) as of March 2026. On-page only.
+
+### 1. Geographic Click Relevance
+Google now uses geographic click patterns (NavBoost + geolocation) to dramatically rerank results. A site can drop 4+ positions or disappear entirely based on geographic relevance. Every local/service page must include: full city and state, neighborhood names, nearby landmarks, transit references, terminal numbers where relevant. Not just "we serve [city]" but operationally specific location content that proves geographic relevance to the query's geo context.
+
+### 2. Click Satisfaction as Primary Signal
+The March 2026 updates are click-based via NavBoost, not content-based. Google places pages to get clicks, then watches if users are satisfied. If click-through drops off, rankings drop. On-page requirement: content must deliver the answer in the first 3 chunks. Front-load all value. If users click and bounce, the page is done regardless of content quality.
+
+### 3. AI Overview Link Optimization
+Getting a link inside the AI Overview drives 70-80% CTR. Structure every page for AI Overview extraction: clean HTML tables with labeled columns, direct snippet answers in the first 2-3 sentences after every H2, FAQ markup via JSON-LD, and enough entity signals to earn the citation link not just be quoted without attribution.
+
+### 4. AI Overview Theft Defense
+If GSC shows rising impressions but falling clicks, Google is surfacing your content in AI Overviews without giving you the click. Defense: include interactive elements (calculators, comparison widgets, booking tools) that cannot be replicated in an overview. Structure content to earn the link rather than just the text citation.
+
+### 5. QDD (Query Deserves Diversity) Awareness
+Google uses QDD to pull diverse results into AI Overviews. Your ranking may not change but Google can pull you into or out of the overview, drastically changing impressions and clicks. Every page must offer a genuinely different angle or data point from what is already ranking. The Information Gain Test is now critical for QDD survival.
+
+### 6. FHASS Replaces YMYL
+Google has expanded YMYL to FHASS: Financial, Health, And Safety, and Security. Any site where there is user risk gets extra algorithmic scrutiny. Pages in these categories need stronger E-E-A-T signals, verification tags on all claims, traceable citations, and trust indicators like the Not For You block.
+
+### 7. Banned Content Patterns (2026 Confirmed Penalties)
+These patterns are confirmed penalized in the March 2026 updates:
+- Generic FAQ sections generated by publicly available AI tools without unique data or operational specifics
+- Broad blog roll pages outside the site's core topical circle
+- Content that exists to target keywords rather than serve a user need
+- 300-word thin pages (the "chunking for AEO" myth is confirmed dead)
+- Filler sections with empty headings or near-identical wording
+- Pages without clear buying intent signals or user task completion paths
+
+### 8. Minimum Content Depth
+The 300-word page strategy some practitioners adopted for LLM chunking is confirmed penalized. Actual LLM chunking is 600 words with 300-word overlap. Google treats 300-word pages as thin content by definition. Minimum substantive content for any page this skill produces: 1,500 words. Target the competitive median from SERP analysis.
+
+### 9. Speed of Satisfaction
+Pages that satisfy user intent quickly and predictably are rewarded. The pattern: high buying intent + specific useful content + fast task resolution = positive click satisfaction signal. Structure every page so the user can complete their task (find the answer, compare options, make a decision) without scrolling past the first 3 sections.
+
+### 10. Local AI Overview Preparation
+60%+ of local searches will have AI Overviews within 6 months. Every local page must be structured for this: conversational long-tail query coverage, Ask Maps optimization (structured data that answers "who has X available this weekend"), FAQ/PAA sections matching conversational query patterns, and map embed integration with informational content linking to it.
 
 ---
 

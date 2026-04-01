@@ -1,4 +1,4 @@
-# SEO-AGI v1.3.0
+# SEO-AGI v1.4.0
 
 ### One command. Competitive data in. Ranking pages out.
 
@@ -9,6 +9,16 @@ claude install-skill gbessoni/seo-agi
 Most SEO tools tell you what's wrong with your site. This one writes the pages.
 
 `/seoagi "airport parking JFK"` pulls the current SERP, analyzes what's ranking, finds the gaps in their content, and writes you a complete page -- with the heading structure, depth, FAQ section, and schema markup that actually competes. Not thin content. Not keyword-stuffed filler. Pages backed by live data from the tools the pros use.
+
+**New in v1.4.0 -- March 2026 Update Protocols:**
+- **NavBoost Geographic Click Relevance** -- pages now reranked by geographic click patterns. Local pages require neighborhood-level specificity, not just city names. Observed across SEO X community testing.
+- **Click Satisfaction as Primary Signal** -- Google watches if users are satisfied after clicking. Content must deliver value in the first 3 chunks or rankings drop regardless of quality. Confirmed via practitioner NavBoost analysis.
+- **AI Overview Link Optimization** -- earning a link inside AI Overviews drives 70-80% CTR. Pages structured for snippet extraction with clean tables and FAQ markup.
+- **AI Overview Theft Defense** -- rising impressions + falling clicks = your content cited without credit. Interactive elements (calculators, widgets) defend against extraction.
+- **QDD (Query Deserves Diversity)** -- Google pulls diverse results into overviews. Information Gain Test now critical for QDD survival.
+- **FHASS Replaces YMYL** -- Financial, Health, And Safety, and Security. Expanded scrutiny for risk-adjacent content. Discussed in Google Cloud documentation updates.
+- **Banned 2026 Content Patterns** -- generic AI FAQs, 300-word thin pages, blog rolls outside topical circle all confirmed penalized.
+- **34-point quality checklist** with geographic specificity, click satisfaction, FHASS compliance, and minimum 1,500-word depth checks.
 
 **New in v1.3.0 -- 2026 SEO Protocols:**
 - **AI Summary Nuggets** -- every page opens with a 200-character fact-dense block designed for Perplexity/Gemini/ChatGPT to cite as a consensus source. Position zero for LLM retrieval.
