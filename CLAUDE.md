@@ -10,7 +10,10 @@ This is not a generic SEO prompt. It enforces 500-token chunk architecture, Redd
 SKILL.md              -- The framework (GEO engine + data layer integration)
 SPEC.md               -- Technical architecture for the data layer
 scripts/
-  research.py         -- CLI: SERP research via DataForSEO
+  research.py         -- CLI: SERP research via DataForSEO. v1.7.1 adds
+                         meta_entities (bolded snippet phrases),
+                         target_ngrams (top 3 competitor bigrams/trigrams),
+                         primary_intent + secondary_intent dual mapping.
   gsc_pull.py         -- CLI: Google Search Console data
   tributary_gen.py    -- CLI: Generates Tier 1/Tier 2 companion content
                          (Google Sites, Medium, Subreddit, Google Sheets,
@@ -46,6 +49,12 @@ The SKILL.md is the living document. It contains:
   (Google Sites, Medium, Subreddits, Google Sheets, LinkedIn). Quality gates
   apply equally to off-page content -- thin tributaries net-harm the money
   page's entity signal. Generated via `scripts/tributary_gen.py`.
+- **LLM Retrieval & Substantive Content Protocols** (v1.7.1): Meta Entity
+  Isolation (snippet-level entities), Bigram/Trigram AI Alignment (top
+  3 competitor n-grams in AI Summary Nugget), Dual-Intent Mapping
+  (Primary + Secondary action funnel), 410 Prune Protocol (explicit
+  301/410 recommendations on rewrites), Technical Codebase Execution
+  (semantic HTML injection + redirect config snippets when in-repo).
 - Verification tagging system ({{VERIFY}}, {{RESEARCH NEEDED}}, {{SOURCE NEEDED}})
 - Vertical-specific instructions (airport/parking, local service, listicle, comparison)
 - LLM/AEO citation strategy

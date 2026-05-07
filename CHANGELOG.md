@@ -2,6 +2,25 @@
 
 All notable changes to seo-agi are documented here.
 
+## [1.7.1] - 2026-05-07
+
+### Added
+- **Meta-Specific Entity Isolation**: `extract_meta_entities()` mines bolded query-matched phrases from the `highlighted` field of competitor SERP results (with inline `<b>`/`<strong>`/`**` fallback parsing). These are the entities Google's snippet generator already validated as relevant -- a stronger signal than body-content extraction.
+- **Bigram/Trigram AI Alignment**: `extract_target_ngrams()` tokenizes the top 3 ranking competitors' headings + titles, filters via an inlined English stopword list, and returns the top 5 bigrams and top 5 trigrams. Output seeds the AI Summary Nugget for LLM-retrieval token overlap.
+- **Primary + Secondary Intent (Orcas 1)**: `detect_secondary_intent()` maps the funnel-next intent (informational → commercial → transactional → navigational), with overrides for transactional title signals (book/reserve/buy) and brand-domain dominance in the top 5.
+- **45-point quality checklist**: adds Meta Entity Isolation, N-Gram Alignment, Dual-Intent, and Status Code Governance checks. Passing threshold raised to 36/45.
+- **Technical Codebase Execution Rules** (SKILL.md): when the skill runs inside a project repo, it detects the framework (Next.js, Astro, Gatsby, Hugo, etc.), injects semantic HTML into source files, and emits `.htaccess` / Nginx / `next.config.js` redirect snippets for 301/410 recommendations.
+- **The 410 Prune Protocol** in the rewrite workflow: every legacy URL gets an explicit 301 (preserve equity) or 410 (prune) recommendation. Silent leave-as-is is no longer acceptable.
+
+### Changed
+- `dataforseo.py`: `_extract_serp` now passes through the `highlighted` field on every organic result (was being dropped). Required for Meta Entity Isolation.
+- `research.py`: research output now surfaces `primary_intent`, `secondary_intent`, `meta_entities`, and `target_ngrams` at top level (not buried in `analysis`) for direct brief consumption.
+- README.md "What It Actually Does" block expanded from 13 to 14 steps reflecting dual-intent mapping (step 5), n-gram seeding (step 8), and 301/410 governance (step 12).
+- HARD RULES rewritten in SKILL.md: replaced the negative "never use codename X" rule with positive naming guidance ("framework is seo-agi / seobuild-onpage; no prior internal codenames in any output").
+
+### Tests
+- Added `tests/test_research_v171.py` with 13 new tests covering meta-entity extraction (highlighted field + inline-tag fallback + dedup), n-gram extraction (stopword filtering, top-N limiting, empty-input safety), tokenizer behavior, and secondary-intent funnel + override logic.
+
 ## [1.7.0] - 2026-04-30
 
 ### Added
@@ -64,7 +83,7 @@ All notable changes to seo-agi are documented here.
 ## [1.1.0] - 2026-03-24
 
 ### Added
-- Hard rule: "beefy" banned from all output (framework is seo-agi)
+- Hard rule: framework is named seo-agi only; prior internal codenames must not appear in output
 - Mandatory printed scorecard at end of every page output (no exceptions)
 - FAQ/PAA section required (3+ questions, FAQPage schema)
 - JSON-LD schema block required per page type

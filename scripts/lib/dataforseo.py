@@ -158,6 +158,11 @@ class DataForSEOClient:
                         "domain": item.get("domain", ""),
                         "title": item.get("title", ""),
                         "description": item.get("description", ""),
+                        # DataForSEO surfaces query-matched bolded snippet
+                        # phrases in `highlighted` (list of strings).
+                        # These are the snippet entities we mine for the
+                        # Meta Entity Isolation check (v1.7.1).
+                        "highlighted": item.get("highlighted") or [],
                     }
                 )
 

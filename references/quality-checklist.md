@@ -81,3 +81,14 @@ These issues override the score and require fixing regardless:
 - No FAQ or PAA coverage
 - Missing schema markup entirely
 - Keyword density above 3% (stuffing)
+
+---
+
+## v1.7.1 -- 45-Point Pass/Fail Checklist
+
+In addition to the rubric above, every page must pass the SKILL.md 45-point YES/NO checklist (Section 14). Pages scoring below 36/45 require revision before delivery. The four new checks added in v1.7.1:
+
+- [ ] **#42 -- Meta Entity Isolation Check.** The entity set used in the brief was sourced from the bolded query-matched terms inside competitor SERP descriptions (`research.meta_entities`), not from generic body-content entity extraction. Snippet entities are the tokens Google's own snippet generator already validated as relevant.
+- [ ] **#43 -- N-Gram AI Alignment Check.** The AI Summary Nugget at the top of the page contains 2 or more bigrams or trigrams pulled verbatim from the top 3 ranking competitors' body text (`research.target_ngrams`). LLM retrieval scoring rewards token-window overlap with consensus phrasing.
+- [ ] **#44 -- Dual-Intent Check.** Primary intent (`research.primary_intent`) is satisfied within the first 500 tokens AND a Secondary action funnel (`research.secondary_intent`) is present in the next two chunks. Single-intent pages fail this check.
+- [ ] **#45 -- Status Code Governance.** For rewrites only. Every legacy URL evaluated has an explicit `301` (preserve equity, topic survives) or `410` (prune, thin/cannibalizing/out-of-circle) recommendation. Silent leave-as-is is a fail.
