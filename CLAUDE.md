@@ -57,6 +57,14 @@ The SKILL.md is the living document. It contains:
   (Google Sites, Medium, Subreddits, Google Sheets, LinkedIn). Quality gates
   apply equally to off-page content -- thin tributaries net-harm the money
   page's entity signal. Generated via `scripts/tributary_gen.py`.
+- **Specificity Scoring & Format Bans** (v2.5.0): Named Source
+  Attribution (claims name their source in visible copy, not just in a
+  {{VERIFY}} tag). Bans on fabricated testing claims ("We tested 12 of
+  these") and skyscraper/encyclopedia pages. Conversion furniture
+  (award badges, trust marks, CTA panels) renders as SVG with mandatory
+  accessible text alternatives. Quantifiable brand differentiators
+  required in both Section 10 verticals. 70-point checklist,
+  threshold 60/70.
 - **MASTER RULE: Anti-Hallucination Meta-Directive** (v2.4.0): at the
   top of SKILL.md. The agent must not apply pre-trained SEO knowledge
   (LSI, keyword density, blog hubs, arbitrary word counts) and executes

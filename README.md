@@ -1,4 +1,4 @@
-# seobuild-onpage v2.4.0
+# seobuild-onpage v2.5.0
 
 ### One command. Competitive data in. Ranking pages out.
 
@@ -9,6 +9,14 @@ git clone https://github.com/gbessoni/seobuild-onpage.git ~/.claude/skills/seobu
 Most SEO tools tell you what's wrong with your site. This one writes the pages.
 
 `/seoagi "airport parking JFK"` pulls the current SERP, analyzes what's ranking, finds the gaps in their content, and writes you a complete page -- with the heading structure, depth, FAQ section, and schema markup that actually competes. Not thin content. Not keyword-stuffed filler. Pages backed by live data from the tools the pros use.
+
+**New in v2.5.0 -- Specificity Scoring & Format Bans:**
+- **Named Source Attribution** -- every major claim must name its source in the visible copy, not only inside a `{{VERIFY}}` tag. An unattributed number reads as assertion rather than evidence. Name the source in prose, then link to it.
+- **Ban on fabricated testing claims** -- "We tested 12 of these", "We reviewed 24 options", "After 40 hours of testing" are banned unless the testing genuinely happened and the methodology is documented. A fabricated test count is a fabricated statistic, so this extends the existing ban on invented studies.
+- **Ban on skyscraper pages** -- no exhaustive encyclopedia-style omnibus pages. Comprehensiveness is not the retrieval signal; crucial non-obvious specificity is. Word count continues to come from the competitive median, never from out-lengthing competitors.
+- **Conversion elements as SVG assets** -- award badges, certification seals, trust marks, and decorative CTA panels render as SVG rather than parsed body text, keeping promotional language out of the text layer on informational pages. Accessible text alternatives are mandatory, and claims inside these assets remain subject to `{{VERIFY}}`.
+- **Quantifiable brand differentiators** in both vertical sections -- at least two per local page, expressed as hard numbers or specific attributes rather than adjectives, because Ask Maps and Service Viewer pull structured specifics and discard marketing language.
+- **70-point quality checklist** -- adds Named Source Attribution, Fabricated Testing, Skyscraper, and Quantifiable Differentiators. Passing threshold raised to 60/70.
 
 **New in v2.4.0 -- Discovery Routes & Off-Page Embeds:**
 - **The Anti-Hallucination Meta-Directive** -- a new MASTER RULE at the top of SKILL.md. LLMs are trained on fifteen years of largely obsolete SEO writing, so the agent is now explicitly forbidden from applying pre-trained SEO instincts (LSI keywords, keyword density, blog hubs, "write 2,000 words") and must execute only the rules in the document. Includes a table of the specific instincts to suppress and why each is wrong.
@@ -151,7 +159,7 @@ SEO-AGI:
   12. For rewrites: evaluates each legacy URL and recommends 301 (when topic
       survives and equity should consolidate) or 410 (when the URL is thin,
       cannibalizing, or out-of-circle and should be pruned)
-  13. Validates against 66-point quality checklist
+  13. Validates against 70-point quality checklist
   14. Prints scorecard so you see exactly what passed
 ```
 
@@ -206,7 +214,7 @@ This isn't a wrapper around "write me an SEO article." The skill encodes strateg
 - "Not For You" block: honest section telling readers when this option is a bad fit (trust signal competitors skip)
 - Information Gain Test: every page must contain content not found in the top 10 Google results
 
-**The 66-point quality checklist every page runs through (selected highlights):**
+**The 70-point quality checklist every page runs through (selected highlights):**
 - Information gain over top 10 Google results? Check.
 - Reddit Test: would a practitioner upvote this? Check.
 - Core answer in first 150 words? Check.
@@ -268,8 +276,12 @@ This isn't a wrapper around "write me an SEO article." The skill encodes strateg
 - Off-Page Embed -- Tier 1 draft carries a Maps embed where the platform allows? Check.
 - Unlinked Citation -- plain-text brand and URL mentions alongside the link? Check.
 - SSR/SSG -- internal links present in the raw HTML DOM, not JS-injected? Check.
+- Named Source Attribution -- every major claim names its source in visible copy? Check.
+- No fabricated testing claims ("We tested 12 of these")? Check.
+- Not a skyscraper -- word count from competitive median, not out-lengthing? Check.
+- Quantifiable differentiators on local pages (hard numbers, not adjectives)? Check.
 
-Pages scoring below 57/66 get flagged with specific items to fix. The scorecard is printed at the end of every output so you see exactly what passed.
+Pages scoring below 60/70 get flagged with specific items to fix. The scorecard is printed at the end of every output so you see exactly what passed.
 
 ---
 

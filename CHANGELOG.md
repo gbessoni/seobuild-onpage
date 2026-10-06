@@ -2,6 +2,21 @@
 
 All notable changes to seo-agi are documented here.
 
+## [2.5.0] - 2026-10-06
+
+### Added
+- **Named Source Attribution** (Section 3 + highlights): every major claim must name its source in the visible copy, not only inside a `{{VERIFY}}` tag. Pairs with the v2.3.0 Outbound Citation Requirement: name in prose, then link.
+- **Ban on fabricated testing claims** (Section 9): "We tested 12 of these", "We reviewed 24 options", "After 40 hours of testing" and variants are banned unless the testing happened and methodology is documented in the Original Research block. Framed as an extension of the existing Section 7 ban on invented studies, since a fabricated test count is a fabricated statistic.
+- **Ban on skyscraper pages** (Section 9): no exhaustive encyclopedia-style omnibus pages. Word count continues to come from the competitive median in live SERP data.
+- **Conversion elements as SVG assets** (highlights): award badges, certification seals, trust marks, and decorative CTA panels render as SVG rather than parsed body text, keeping promotional language out of the scored text layer on informational pages. Mandatory accessible text alternative (`<title>` in the SVG, or `role="img"` with `aria-label`); claims inside these assets remain subject to `{{VERIFY}}`.
+- **Quantifiable brand differentiators** in both Section 10 verticals (Airport/Parking and Local Service): at least two per local page, expressed as hard numbers or specific attributes rather than adjectives, feeding Ask Maps and Service Viewer RAG pulls.
+- **70-point quality checklist** with #67-#70. Threshold raised to 60/70.
+
+### Audit note
+Five of the seven items in the originating request were already shipped in v2.3.0 and required no work: mandatory outbound citations (#59), strict Title/H1 keyword isolation (#60), entity-fact tethering with crucial non-obvious information (#61), the sitewide in-content boilerplate ban (#63), and local differentiator handling via Intent Divergence (#62). Only the genuinely missing rules were added here.
+
+The request asked that the SVG-images-for-CTAs rule from "the previous update" not be removed. That rule had never been implemented: it originated in an earlier request that was interrupted before any edits were made, so there was nothing in the repo to preserve. It is introduced for the first time in this release.
+
 ## [2.4.0] - 2026-09-03
 
 ### Added
