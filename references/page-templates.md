@@ -136,3 +136,79 @@ H1: [Product Name]: [Key Benefit] ([Year])
 5. Schema markup matches the page type (see schema-patterns.md)
 6. Year in title only if the content is genuinely time-sensitive
 7. No filler paragraphs. If a section doesn't add value, cut it.
+
+---
+
+## Universal Block Requirements (all templates, current as of v2.5.0)
+
+These apply on top of the per-type skeletons above. Where this section and an
+older rule above disagree, this section wins.
+
+### Required blocks, in order
+
+1. **AI Summary Nugget** -- 200 characters maximum, first element after
+   frontmatter, above the H1. Pure facts: primary entity, key number, core
+   distinction. No marketing language. This is the passage answer engines lift
+   as a consensus snippet.
+2. **Opening answer block** -- 100 to 150 words, third-person and objective.
+   Answers the query directly, no preamble or definitional throat-clearing.
+3. **Fast-scan summary** -- within the first 200 words. Bullets with concrete
+   facts, a key-takeaways box, or a comparison table.
+4. **Main body** -- 500-token chunks (see below).
+5. **Comparison table** -- real `<table>`, columns that do work: Best For,
+   Main Tradeoff, Why It Matters, Typical Cost.
+6. **Prove-It section** -- two or more hard operational facts with traceable
+   citations.
+7. **Original Research / Data Experiment block** -- a specific test, analysis,
+   or first-hand observation. Pages without one cap out on the scorecard.
+8. **Not For You block** -- honest scenarios where this is the wrong choice.
+   At least one line a competitor would never publish.
+9. **FAQ** -- three or more real PAA questions, wrapped in FAQPage schema.
+10. **Recommended Spoke Pages** -- built from `research.missing_spokes`,
+    derived per page. Never the same list across pages.
+
+### 500-token chunk architecture
+
+Each chunk is roughly 375 words and must stand alone as the answer to one
+specific sub-query (one QFO facet per chunk, never two). Within every chunk:
+
+- **Question-based H2** using entity names, never the exact-match keyword.
+- **Snippet answer** in the first 2-3 sentences, wrapped in a block-level
+  structural container, not a bare `<p>`.
+- **Entity-fact pairing** -- every entity bound to a hard fact in that same
+  chunk: time, place, cost, capacity, frequency, distance, or date.
+- **Named source attribution** -- major claims name their source in the visible
+  copy, then link to it.
+- **Proof-term proximity** -- supporting evidence lives in the same chunk as the
+  heading it supports.
+- Never split a table across a chunk boundary. Never stack two H2s without
+  250+ words between them.
+
+### Informational vs Local template separation
+
+The same page skeleton diverges by intent. Applying the wrong column demotes
+the page.
+
+| | Informational / global | Local service (Ask Maps) |
+|---|---|---|
+| Sales CTAs | Strip | Keep, maximum two |
+| "Free estimate" offers | Strip | Permitted |
+| Awards, badges, certifications | Strip from text layer, SVG only | Feature prominently |
+| Quantifiable differentiators | Omit | Required, two or more, hard numbers |
+| Outbound citations | 5+ required | 5+ required |
+| Service scope | Single topic cluster | Exactly one service, one location |
+| GBP directive | Not applicable | Required at top of brief |
+
+Determine intent from `research.primary_intent` before choosing a column.
+
+### Hard limits
+
+- Exact-match keyword appears in the Title and H1 only. Never in H2/H3/H4,
+  meta description, or alt text.
+- Five or more descriptive outbound links to external authoritative sources.
+- Maximum DOM nesting depth of roughly three levels in the content region.
+- Server-rendered or static output. Internal links must exist in the raw HTML.
+- No fabricated testing claims ("We tested 12 of these") unless the testing
+  happened and the methodology is documented.
+- No skyscraper pages. Word count comes from the competitive median.
+- Internal links are contextual per chunk, never a repeated sitewide block.

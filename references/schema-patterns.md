@@ -139,3 +139,52 @@ When combining, wrap in an array:
 Always validate generated schema at:
 - https://search.google.com/test/rich-results
 - https://validator.schema.org/
+
+---
+
+## Inline RDFa / Microdata (required since v1.8.0)
+
+JSON-LD in `<head>` is necessary but no longer sufficient. Google's AI Overview
+pipeline extracts structural "shards" from the rendered DOM, so critical data
+must also be visible to a clean-session crawler in the body. Pair every JSON-LD
+block with front-facing markup: real `<table>` elements, or inline RDFa spans.
+
+### Entity + price
+
+```html
+<p vocab="https://schema.org/" typeof="Product">
+  <span property="name">JFK Long-Term Lot 9</span> charges
+  <span property="offers" typeof="Offer">
+    <span property="price">20.00</span>
+    <span property="priceCurrency" content="USD">USD</span>
+  </span> per day.
+</p>
+```
+
+### Place + operating detail
+
+```html
+<span vocab="https://schema.org/" typeof="ParkingFacility">
+  <span property="name">Lot 9</span> holds
+  <span property="maximumAttendeeCapacity">8500</span> vehicles.
+</span>
+```
+
+### Microdata alternative
+
+```html
+<div itemscope itemtype="https://schema.org/LocalBusiness">
+  <span itemprop="name">SmartPark JFK</span>
+  <span itemprop="telephone">+1-718-555-0100</span>
+  <span itemprop="openingHours" content="Mo-Su 00:00-23:59">Open 24/7</span>
+</div>
+```
+
+### Rules
+
+- Critical pricing, capacity, schedule, and location data appears in the body,
+  not only in a `<head>` script tag.
+- Tabular data uses real `<table>` markup. Never simulate a table with bullets.
+- The inline markup must describe content the human actually sees. Do not add
+  RDFa to hidden text.
+- Numbers inside these blocks are still subject to `{{VERIFY}}` tagging.
