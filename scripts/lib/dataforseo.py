@@ -167,7 +167,7 @@ class DataForSEOClient:
                 )
 
             elif item_type == "people_also_ask":
-                for paa_item in item.get("items", []):
+                for paa_item in item.get("items") or []:
                     q = paa_item.get("title", "")
                     if q:
                         paa_questions.append(q)
@@ -201,7 +201,7 @@ class DataForSEOClient:
 
         for item in items:
             kw_data = item.get("keyword_data", item)
-            keyword_info = kw_data.get("keyword_info", {})
+            keyword_info = kw_data.get("keyword_info") or {}
             keywords.append(
                 {
                     "keyword": kw_data.get("keyword", ""),
@@ -241,7 +241,7 @@ class DataForSEOClient:
         if not result:
             return None
 
-        items = result[0].get("items", [])
+        items = result[0].get("items") or []
         if not items:
             return None
 
