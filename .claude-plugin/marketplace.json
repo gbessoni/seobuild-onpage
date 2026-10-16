@@ -1,0 +1,26 @@
+{
+  "name": "seobuild",
+  "owner": {
+    "name": "Greg Bessoni",
+    "url": "https://github.com/gbessoni"
+  },
+  "metadata": {
+    "description": "SEO and AEO skills that write pages ranking on Google and cited by AI answer engines.",
+    "version": "2.5.0"
+  },
+  "plugins": [
+    {
+      "name": "seobuild-onpage",
+      "description": "Write SEO pages that rank on Google AND get cited by LLMs. Live SERP data, 500-token chunk architecture, Two-Gate AEO framework, and a 70-point quality checklist.",
+      "version": "2.5.0",
+      "author": {
+        "name": "Greg Bessoni",
+        "url": "https://github.com/gbessoni"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/gbessoni/seobuild-onpage",
+      "license": "MIT"
+    }
+  ]
+}

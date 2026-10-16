@@ -3,8 +3,10 @@
 ### One command. Competitive data in. Ranking pages out.
 
 ```bash
-git clone https://github.com/gbessoni/seobuild-onpage.git ~/.claude/skills/seobuild-onpage
+claude plugin marketplace add gbessoni/seobuild-onpage && claude plugin install seobuild-onpage@seobuild
 ```
+
+Not on Claude Code? See [Install + Setup](#install--setup) for Codex, OpenClaw, and manual clone.
 
 Most SEO tools tell you what's wrong with your site. This one writes the pages.
 
@@ -304,14 +306,19 @@ No keys at all? The skill falls back to web search. You lose precision but the w
 
 ### Step 1: Install the skill
 
-**Claude Code (Mac app / CLI):**
+**Claude Code (recommended -- installs as a plugin, updates with one command):**
 ```bash
-git clone https://github.com/gbessoni/seobuild-onpage.git ~/.claude/skills/seobuild-onpage
+claude plugin marketplace add gbessoni/seobuild-onpage
+```
+```bash
+claude plugin install seobuild-onpage@seobuild
 ```
 
-**OpenClaw:**
+Update later with `claude plugin update seobuild-onpage`. Restart required to apply.
+
+**Claude Code (manual clone, if you prefer to edit the files directly):**
 ```bash
-git clone https://github.com/gbessoni/seobuild-onpage.git ~/.agents/skills/seobuild-onpage
+git clone https://github.com/gbessoni/seobuild-onpage.git ~/.claude/skills/seobuild-onpage
 ```
 
 **Codex:**
@@ -319,17 +326,28 @@ git clone https://github.com/gbessoni/seobuild-onpage.git ~/.agents/skills/seobu
 git clone https://github.com/gbessoni/seobuild-onpage.git ~/.codex/skills/seobuild-onpage
 ```
 
-Then **restart your agent** so it picks up the new skill. Skills are loaded at session start, so a running session will not see it.
+**OpenClaw:**
+```bash
+git clone https://github.com/gbessoni/seobuild-onpage.git ~/.agents/skills/seobuild-onpage
+```
 
-**Updating later:**
+**Any other agent:** clone the repo anywhere and point your agent at `SKILL.md`. The skill locates its own scripts at runtime, so the directory name does not need to match.
+
+After installing, **restart your agent**. Skills load at session start, so a running session will not see a newly installed one.
+
+### Updating a cloned install
+
 ```bash
 cd ~/.claude/skills/seobuild-onpage && git pull
 ```
 
-If you have local changes (an edited `.env.example`, for example), stash them first so the pull does not abort:
+If you have local edits (a modified `.env.example`, for example), stash first so the pull does not abort:
+
 ```bash
 cd ~/.claude/skills/seobuild-onpage && git stash && git pull && git stash pop
 ```
+
+> Already installed and seeing "destination path already exists"? You cloned it before. Use the update commands above, not the install ones.
 
 ### Step 2: Install Python dependency
 
