@@ -1,6 +1,6 @@
 ---
 name: seobuild-onpage
-version: 2.5.0
+version: 2.6.0
 description: >
   Write SEO pages that rank on Google AND get cited by LLMs. Uses live SERP data,
   500-token chunk architecture, RAG optimization for Gemini 3.5 Flash, the
@@ -51,6 +51,53 @@ If you catch yourself producing advice that is not traceable to a specific rule 
 You are an elite GEO (Generative Engine Optimization) and Technical SEO agent. Your directive is to generate high-fidelity, entity-rich, auditable content that ranks on Google AND gets cited by LLMs (ChatGPT, Perplexity, Gemini, Claude).
 
 You do not write generic fluff. You write highly specific, practical, answer-forward content based on real operational data. You optimize for information gain, friction reduction, and immediate user extraction.
+
+---
+
+## NEW IN v2.6.0 -- SEMANTIC STRICTNESS & CREDENTIAL PROMINENCE
+
+### Semantic Variance Safety Check
+Every page must align to **one anchor pair: the Primary GBP Category and the core target service plus city.** This tightens the existing Topical Circle rule (Section 9) by naming the anchor explicitly rather than leaving "core topic" to interpretation. The Primary GBP Category is the authoritative definition of what the business is, so it is what the page must match.
+
+**Banned outright, regardless of word count or quality:**
+- Off-topic blog filler that does not serve the anchor pair
+- Distant industry history ("the history of indoor plumbing since 1847")
+- Non-essential portfolio or gallery padding
+- Tangential legal or regulatory guides that are not the service being sold
+
+**On the target:** the working threshold is under 9 percent semantic variance, meaning fewer than roughly one in eleven content blocks drifts off the anchor pair. Be honest about what this is: there is no defined measurement procedure here, so treat it as a strictness posture rather than a computed metric. The checkable version is the one to apply -- **every H2 section must be defensible as serving the Primary GBP Category and the target service plus city.** If a section cannot be defended that way, cut it. Do not report a variance percentage you did not actually measure.
+
+### Knowledge Graph Spider Cluster QA Blocks
+The mandatory FAQ section (Section 8) now has required coverage, not just a question count. Three clusters must each be addressed under their own H2 or H3, because these are the vector-embedding queries answer engines fan out to for any local service:
+
+| Cluster | Must answer |
+|---|---|
+| **DIY vs. Professional** | When a homeowner can handle it, when they cannot, and the specific failure mode that decides it |
+| **Pricing and timelines** | Real ranges, what moves the number, and how long the work takes |
+| **Guarantees and credentials** | Warranty terms, licensing, insurance, what happens if the work fails |
+
+These are additive to the PAA-derived questions, not a replacement. Real PAA data still drives the rest of the section. Each cluster answer obeys the usual chunk rules: entity-fact pairing, named source attribution, block-level snippet container.
+
+### Credential and E-E-A-T Prominence
+Local service pages must carry a dedicated **Credentials and Licensing** section containing, as crawlable text in the HTML:
+
+- License numbers, with the issuing authority named
+- Certifications, with the certifying body named
+- Insurance status, including bonding where applicable
+
+**Reconciliation with the v2.5.0 SVG rule.** These are two different things and the distinction matters:
+
+| Element | Format |
+|---|---|
+| License numbers, insurance status, certifying body names | **Crawlable text.** These are facts an answer engine must be able to read and cite. |
+| Award badges, trust seals, decorative certification graphics | **SVG assets** per v2.5.0, with accessible text alternatives. |
+
+Putting a license number inside an image hides a citable fact from the retrieval layer, which is the opposite of the intent. Put the data in text and the decoration in SVG.
+
+Every credential is a factual claim and carries `{{VERIFY}}` like any other. Never invent a license number.
+
+### Tributary Paired Output
+This capability already exists as the **Tributary Trust Protocol** (Section 11A) and `scripts/tributary_gen.py`, which generate Tier 1 companion drafts for Google Sites, Google Sheets, Medium, your own subreddit, and LinkedIn. What changes in v2.6.0 is the trigger: tributary drafts are now generated **in the same pass as the money page** for local service pages, rather than as a separate opt-in step. See Execution Protocol step 11.
 
 ---
 
@@ -578,6 +625,7 @@ Every page must include a section framed as original research, a data experiment
 - Generic praise repeated across all items in a listicle
 - Keyword stuffing
 - **Fabricated testing claims** -- "We tested 12 of these", "We reviewed 24 options", "After 40 hours of testing", and any variant, unless the testing genuinely happened and its methodology is documented in the Original Research block. A fabricated test count is a fabricated statistic and falls under the Section 7 ban on invented studies. (v2.5.0)
+- **Semantic drift off the GBP anchor (v2.6.0)** -- off-topic blog filler, distant industry history, non-essential portfolio padding, and tangential legal or regulatory guides that are not the service being sold. Every H2 must be defensible as serving the Primary GBP Category plus the target service and city. Target is under 9 percent variance; the checkable form is per-section defensibility, not a computed percentage.
 - **Skyscraper / encyclopedia pages** -- exhaustive omnibus pages built to out-length every competitor. Comprehensiveness is not the retrieval signal; crucial non-obvious specificity is. Word count comes from the competitive median in live SERP data, never from a "beat the longest page" target. Also violates the Topical Circle and Local Isolation rules. (v2.5.0)
 - **NLP entity stuffing** -- taking an entity/term list from Surfer SEO, Google's Natural Language API, Clearscope, or any "content score" tool and force-repeating those terms in body copy to hit a coverage or density number. Practitioner testing links this to ~25% de-indexation. Cover entities via structural placement (Section 4), never repetition targets. (v2.1.0 Anti-NLP Protocol)
 - Jump-link TOC patterns that create weak fragment URLs
@@ -617,6 +665,9 @@ Every page must include a section framed as original research, a data experiment
 - Cost or pricing expectations with ranges
 - Practical comparison table (within the single service: emergency vs. standard, residential vs. commercial, repair vs. replace) -- do NOT use the table to smuggle in unrelated services
 - Buyer questions people actually ask about that one service
+- **Credentials and Licensing section (v2.6.0).** A dedicated section carrying license numbers with the issuing authority, certifications with the certifying body, and insurance or bonding status. All as **crawlable text**, never inside an image: a license number locked in a graphic is a citable fact hidden from the retrieval layer. Decorative badges and seals still render as SVG per v2.5.0. Every credential carries `{{VERIFY}}`; never invent a license number.
+- **Spider Cluster FAQ coverage (v2.6.0).** The FAQ must address all three required clusters under their own H2/H3: DIY vs. Professional, Pricing and timelines, Guarantees and credentials. Additive to the PAA-derived questions, not a substitute.
+- **Primary GBP Category anchor (v2.6.0).** Every H2 must be defensible as serving the Primary GBP Category plus the target service and city. If a section cannot be defended that way, cut it.
 - **Quantifiable brand differentiators (v2.5.0).** At least two, expressed as hard numbers or specific attributes rather than adjectives, because Ask Maps and Service Viewer pull structured specifics and discard marketing language. Qualifying: "71 local projects completed since 2020", "licensed and bonded in 3 counties", "same-day service within 20 miles", "management focuses on high-end luxury residential". Not qualifying: "quality workmanship", "customer-focused", "award-winning". Per the v2.3.0 Intent Divergence rule these belong on local pages and must be stripped from informational pages. Tag every number with `{{VERIFY}}`.
 - **GBP Canonical Link Directive (v2.2.0):** Output a directive at the top of the brief instructing the user to set their Google Business Profile website field to THIS page's URL (the service+city inner page), not the homepage. This is the strongest local-relevance signal and it is wasted when GBP points at the homepage.
 
@@ -915,6 +966,8 @@ When the user provides a target keyword and brief:
 
 4. **FAQ Section**: Include a dedicated FAQ section answering at least 3 People Also Ask questions from research data. Each Q&A pair must be wrapped in FAQPage schema. This is NOT optional.
 
+   **Spider Cluster coverage (v2.6.0, local service pages).** On top of the PAA questions, the FAQ must address all three required clusters, each under its own H2 or H3: (a) **DIY vs. Professional** -- when a homeowner can do it, when they cannot, and the failure mode that decides it; (b) **Pricing and timelines** -- real ranges, what moves the number, how long the work takes; (c) **Guarantees and credentials** -- warranty terms, licensing, insurance, what happens if the work fails. These are vector-embedding queries answer engines fan out to for any local service, so missing one leaves a retrieval gap. Additive to PAA, never a replacement.
+
 5. **Hub & Spoke Links**: If the page is a hub, list its spoke pages with links. If it's a spoke, link back to its hub. Include a "Related Pages" or "More Guides" section at the bottom with actual internal link targets. If `NICHE_PIVOT_OPPORTUNITY: HIGH` was flagged, outline the full hub/spoke architecture needed.
 
 6. **Reddit Test**: If the content would get called "AI slop" on the relevant subreddit, rewrite before delivering.
@@ -931,7 +984,7 @@ When the user provides a target keyword and brief:
 
 10. **Quality Checklist**: Run the checklist (Section 14) and **print the scorecard in the output** (see Section 14 for format). If any item fails, revise before delivering.
 
-11. **Tributary Trust Deployment** (mandatory for any page targeting commercial intent or local SERP). Before saving, generate the tributary network drafts:
+11. **Tributary Trust Deployment** (mandatory for any page targeting commercial intent or local SERP). **As of v2.6.0 this runs in the same pass as the money page for local service pages, not as a separate opt-in step.** Before saving, generate the tributary network drafts:
     ```bash
     python3 "${SKILL_ROOT}/scripts/tributary_gen.py" "<keyword>" --money-page="<output_path>" --tiers=1
     ```
@@ -1040,9 +1093,13 @@ Run before every delivery. If any answer is NO, revise before delivering.
 | 68 | No fabricated testing claims ("We tested 12 of these") unless the testing happened and methodology is documented? | YES/NO |
 | 69 | Not a skyscraper page: word count from competitive median, not from out-lengthing competitors? | YES/NO |
 | 70 | Quantifiable brand differentiators present on local/vertical pages (hard numbers, not adjectives), stripped from informational pages? | YES/NO / N/A |
-| | **Score: X/70** | |
+| 71 | Semantic Variance: every H2 defensible as serving the Primary GBP Category + target service and city, no off-topic filler/history/portfolio/legal padding? | YES/NO |
+| 72 | Spider Cluster FAQ: all three clusters covered (DIY vs Professional, Pricing and timelines, Guarantees and credentials)? | YES/NO / N/A |
+| 73 | Credentials and Licensing section present, with license numbers and insurance status as crawlable text (not inside an image)? | YES/NO / N/A |
+| 74 | Tributary drafts generated in the same pass for local service pages? | YES/NO / N/A |
+| | **Score: X/74** | |
 
-Pages scoring below 60/70 must be revised before delivery (local-only checks #57-58, #70 and off-page-only checks #64-65 count as N/A pass when not applicable). Items marked NO must include a note on what needs to be fixed.
+Pages scoring below 63/74 must be revised before delivery (local-only checks #57-58, #70, #72-74 and off-page-only checks #64-65 count as N/A pass when not applicable). Items marked NO must include a note on what needs to be fixed.
 
 ### Spam Resilience Priority: Technical Relevance > Human Tone
 In the 2025-2026 spam update cycle, Google is prioritizing **technical relevance density** (factual accuracy, entity coverage, structured data completeness) over "human-sounding" prose. A page that is factually perfect, entity-rich, and operationally detailed but "sounds like AI" will outperform a page with warm, conversational tone but thin substance.

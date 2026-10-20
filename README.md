@@ -1,4 +1,4 @@
-# seobuild-onpage v2.5.0
+# seobuild-onpage v2.6.0
 
 ### One command. Competitive data in. Ranking pages out.
 
@@ -11,6 +11,13 @@ Not on Claude Code? See [Install + Setup](#install--setup) for Codex, OpenClaw, 
 Most SEO tools tell you what's wrong with your site. This one writes the pages.
 
 `/seoagi "airport parking JFK"` pulls the current SERP, analyzes what's ranking, finds the gaps in their content, and writes you a complete page -- with the heading structure, depth, FAQ section, and schema markup that actually competes. Not thin content. Not keyword-stuffed filler. Pages backed by live data from the tools the pros use.
+
+**New in v2.6.0 -- Semantic Strictness & Credential Prominence:**
+- **Semantic Variance Safety Check** -- every page anchors to the Primary GBP Category plus the target service and city. Off-topic filler, distant industry history, portfolio padding, and tangential legal guides are banned outright. The checkable test is per-section: every H2 must be defensible against that anchor.
+- **Spider Cluster FAQ blocks** -- local service FAQs must now cover three required clusters under their own headings: DIY vs. Professional, Pricing and timelines, and Guarantees and credentials. These are the queries answer engines fan out to for any local service.
+- **Credentials and Licensing section** -- local pages carry license numbers, certifying bodies, and insurance status as crawlable text. Decorative badges stay SVG per v2.5.0; the citable facts stay in the text layer.
+- **Tributary paired output** -- the existing Tributary Trust drafts now generate in the same pass as the money page for local service pages, instead of as a separate step.
+- **74-point quality checklist** -- adds Semantic Variance, Spider Cluster, Credentials, and Tributary Pairing. Passing threshold raised to 63/74.
 
 **New in v2.5.0 -- Specificity Scoring & Format Bans:**
 - **Named Source Attribution** -- every major claim must name its source in the visible copy, not only inside a `{{VERIFY}}` tag. An unattributed number reads as assertion rather than evidence. Name the source in prose, then link to it.
@@ -161,7 +168,7 @@ SEO-AGI:
   12. For rewrites: evaluates each legacy URL and recommends 301 (when topic
       survives and equity should consolidate) or 410 (when the URL is thin,
       cannibalizing, or out-of-circle and should be pruned)
-  13. Validates against 70-point quality checklist
+  13. Validates against 74-point quality checklist
   14. Prints scorecard so you see exactly what passed
 ```
 
@@ -216,7 +223,7 @@ This isn't a wrapper around "write me an SEO article." The skill encodes strateg
 - "Not For You" block: honest section telling readers when this option is a bad fit (trust signal competitors skip)
 - Information Gain Test: every page must contain content not found in the top 10 Google results
 
-**The 70-point quality checklist every page runs through (selected highlights):**
+**The 74-point quality checklist every page runs through (selected highlights):**
 - Information gain over top 10 Google results? Check.
 - Reddit Test: would a practitioner upvote this? Check.
 - Core answer in first 150 words? Check.
@@ -282,8 +289,12 @@ This isn't a wrapper around "write me an SEO article." The skill encodes strateg
 - No fabricated testing claims ("We tested 12 of these")? Check.
 - Not a skyscraper -- word count from competitive median, not out-lengthing? Check.
 - Quantifiable differentiators on local pages (hard numbers, not adjectives)? Check.
+- Semantic variance -- every H2 defensible against the Primary GBP Category + service + city? Check.
+- Spider Cluster FAQ -- DIY vs Pro, pricing and timelines, guarantees and credentials? Check.
+- Credentials -- license numbers and insurance status as crawlable text? Check.
+- Tributary drafts generated in the same pass for local pages? Check.
 
-Pages scoring below 60/70 get flagged with specific items to fix. The scorecard is printed at the end of every output so you see exactly what passed.
+Pages scoring below 63/74 get flagged with specific items to fix. The scorecard is printed at the end of every output so you see exactly what passed.
 
 ---
 

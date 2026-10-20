@@ -2,6 +2,23 @@
 
 All notable changes to seo-agi are documented here.
 
+## [2.6.0] - 2026-10-20
+
+### Added
+- **Semantic Variance Safety Check**: every page anchors to the Primary GBP Category plus the core target service and city. Bans off-topic blog filler, distant industry history, non-essential portfolio padding, and tangential legal or regulatory guides. Tightens the existing Topical Circle rule by naming the GBP category as the authoritative anchor.
+- **Knowledge Graph Spider Cluster QA blocks**: local service FAQs must cover three required clusters, each under its own H2 or H3: DIY vs. Professional, Pricing and timelines, Guarantees and credentials. Additive to the PAA-derived questions.
+- **Credentials and Licensing section** for local service pages: license numbers with issuing authority, certifications with certifying body, and insurance or bonding status, all as crawlable text.
+- **Tributary paired output**: Tier 1 companion drafts now generate in the same pass as the money page for local service pages.
+- **74-point quality checklist** with #71-#74. Threshold raised to 63/74.
+
+### Notes on the originating request
+- **The "under 9 percent semantic variance" threshold is documented as a strictness posture, not a computed metric.** The request gave no measurement procedure, and the framework has no tool that computes semantic variance. Reporting a percentage nobody measured would violate the framework's own rule against fabricated statistics. The checkable form shipped instead: every H2 must be defensible against the GBP anchor pair.
+- **Credentials reconciled with the v2.5.0 SVG rule.** The request requires credentials "explicitly in the HTML", while v2.5.0 renders certification seals as SVG. Both hold: license numbers, insurance status, and certifying body names are crawlable text because they are citable facts; decorative badges and seals remain SVG with accessible alternatives. A license number inside an image would hide exactly the fact the section exists to surface.
+- **Tributary output was already shipped.** Section 11A and `scripts/tributary_gen.py` have generated Google Sites, Google Sheets, Medium, subreddit, and LinkedIn drafts since v1.7.0. Only the trigger changed.
+
+### Changed
+- Plugin manifests, SPEC.md, and CONNECTOR.md updated to v2.6.0 and the 74-point count.
+
 ## [2.5.0] - 2026-10-06
 
 ### Added

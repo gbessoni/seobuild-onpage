@@ -1,6 +1,6 @@
 # seo-agi Technical Specification
 
-Current as of **v2.5.0**. This document describes the data layer and execution
+Current as of **v2.6.0**. This document describes the data layer and execution
 architecture. For the content rules themselves, see `SKILL.md`.
 
 ## Overview
@@ -39,7 +39,7 @@ SKILL.md (orchestrator, read by the agent at runtime)
   └── references/
         ├── page-templates.md      structural templates by page type
         ├── schema-patterns.md     JSON-LD + inline RDFa patterns
-        └── quality-checklist.md   70-point scoring rubric
+        └── quality-checklist.md   74-point scoring rubric
 ```
 
 ## Content Parsing: Massive primary, DataForSEO fallback
@@ -89,7 +89,7 @@ results, so it is not used for SERP.
    Output: ~/Documents/SEO-AGI/pages/
 
 7. SCORE
-   70-point checklist printed as a scorecard. Below 60/70 requires revision.
+   74-point checklist printed as a scorecard. Below 63/74 requires revision.
 ```
 
 ### Rewrite flow

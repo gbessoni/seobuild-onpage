@@ -57,6 +57,14 @@ The SKILL.md is the living document. It contains:
   (Google Sites, Medium, Subreddits, Google Sheets, LinkedIn). Quality gates
   apply equally to off-page content -- thin tributaries net-harm the money
   page's entity signal. Generated via `scripts/tributary_gen.py`.
+- **Semantic Strictness & Credential Prominence** (v2.6.0): every H2
+  defensible against the Primary GBP Category + service + city (the
+  "under 9%" variance target is a posture, not a measured metric).
+  Local FAQs cover three Spider Clusters: DIY vs Pro, pricing and
+  timelines, guarantees and credentials. Credentials and Licensing
+  section with license numbers as crawlable text (badges stay SVG).
+  Tributary drafts generate in the same pass for local pages.
+  74-point checklist, threshold 63/74.
 - **Specificity Scoring & Format Bans** (v2.5.0): Named Source
   Attribution (claims name their source in visible copy, not just in a
   {{VERIFY}} tag). Bans on fabricated testing claims ("We tested 12 of

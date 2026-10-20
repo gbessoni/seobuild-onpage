@@ -135,7 +135,7 @@ server side, never in the tool description.
 |---|---|---|
 | `audit_ai_visibility` | `audit` | Share-of-answer for a domain against named competitors. The lead magnet. |
 | `research_keyword` | `audit` | SERP, PAA, related keywords, competitor content parsing, meta entities, n-grams. |
-| `generate_page` | `generate` | Full page per SKILL.md rules, plus the 70-point scorecard. |
+| `generate_page` | `generate` | Full page per SKILL.md rules, plus the 74-point scorecard. |
 | `rewrite_page` | `generate` | Gap analysis against the current top 3, with 301/410 recommendations. |
 | `find_ghost_paths` | `generate` | Impression-earning URLs that return 404. Requires the user's GSC connection. |
 | `track_citations` | `monitor` | Weekly share-of-answer delta against named competitors. |
@@ -189,7 +189,7 @@ You're connected to SEOBuild.
 
 Your free trial
 1. Unlimited AI-visibility audits, with named competitor share-of-answer
-2. 3 full page generations, scored against the 70-point checklist
+2. 3 full page generations, scored against the 74-point checklist
 3. Live SERP, PAA, and competitor content parsing included, no API keys needed
 4. Competitor citation tracking for 3 days
 5. Entity-fact pairing, outbound citations, and schema markup on every page

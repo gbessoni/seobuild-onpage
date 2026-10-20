@@ -1,6 +1,6 @@
 {
   "name": "seobuild-onpage",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Write SEO pages that rank on Google AND get cited by LLMs. Live SERP data, 500-token chunk architecture, Two-Gate AEO framework, and a 70-point quality checklist.",
   "author": {
     "name": "Greg Bessoni",
